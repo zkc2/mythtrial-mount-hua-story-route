@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ActiveScreen, Language } from '../types';
-import { Volume2, VolumeX, BookOpen, Compass, Award, Sparkles, RefreshCw, Menu, X, CheckCircle2, HelpCircle } from 'lucide-react';
+import { Volume2, VolumeX, BookOpen, Compass, Award, Sparkles, RefreshCw, Menu, X, CheckCircle2, HelpCircle, GitBranch } from 'lucide-react';
 import { SoundEngine } from '../utils/soundEffects';
 
 interface NavbarProps {
@@ -53,6 +53,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'map', labelZh: '华山图卷', labelEn: 'Mount Hua Scroll', desktopLabelEn: 'Route', icon: <Compass className="w-4 h-4 shrink-0" /> },
     { id: 'story', labelZh: '传说纪事', labelEn: 'Legend Chronicle', desktopLabelEn: 'Legend Chronicle', icon: <BookOpen className="w-4 h-4 shrink-0" /> },
     { id: 'stamps', labelZh: '宝印谱', labelEn: 'Sacred Seal Collection', desktopLabelEn: 'Sacred Seal Collection', icon: <Award className="w-4 h-4 shrink-0" /> },
+    { id: 'process', labelZh: '制作过程', labelEn: 'Case Study', desktopLabelEn: 'Case Study', icon: <GitBranch className="w-4 h-4 shrink-0" /> },
   ];
 
   const handleNavClick = (screen: ActiveScreen) => {
@@ -97,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1.5 lg:gap-2">
+          <nav className="hidden xl:flex items-center gap-1.5 lg:gap-2">
             {navItems.map((item) => {
               const isActive = activeScreen === item.id;
               const label = lang === 'zh' ? item.labelZh : item.desktopLabelEn;
@@ -222,13 +223,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               <RefreshCw className="w-4 h-4" />
             </button>
 
-            {/* Mobile Menu Button: Visible on screens <= 768px (md:hidden) */}
+            {/* Compact navigation stays available through tablet and small laptop widths. */}
             <button
               id="mobile-menu-btn"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileMenuOpen}
-              className="md:hidden min-h-[44px] min-w-[44px] p-2.5 rounded-lg border border-[#304147] text-[#E6E9D1] hover:text-[#47BBC1] hover:border-[#47BBC1] bg-[#121A1E] flex items-center justify-center transition-colors"
+              className="xl:hidden min-h-[44px] min-w-[44px] p-2.5 rounded-lg border border-[#304147] text-[#E6E9D1] hover:text-[#47BBC1] hover:border-[#47BBC1] bg-[#121A1E] flex items-center justify-center transition-colors"
             >
               {mobileMenuOpen ? <X className="w-5 h-5 text-[#EBC393]" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -236,9 +237,9 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </header>
 
-      {/* Slide-out Mobile Navigation Drawer (Screens <= 768px) */}
+      {/* Slide-out compact navigation drawer for widths below the full desktop layout. */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 md:hidden flex">
+        <div className="fixed inset-0 z-50 xl:hidden flex">
           {/* Backdrop overlay */}
           <div
             className="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity"

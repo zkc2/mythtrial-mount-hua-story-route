@@ -1,8 +1,9 @@
 import React from 'react';
 import { CHECKPOINTS } from '../data/checkpointsData';
 import { Language } from '../types';
-import { Compass, Award, ArrowRight, Mountain } from 'lucide-react';
+import { Compass, Award, ArrowRight, Mountain, Lock } from 'lucide-react';
 import { SoundEngine } from '../utils/soundEffects';
+import { ARTWORK_DISCLOSURE, CHAPTER_ARTWORK, HERO_ARTWORK } from '../data/artworkData';
 
 interface WelcomeScreenProps {
   lang?: Language;
@@ -10,6 +11,8 @@ interface WelcomeScreenProps {
   onSelectCheckpoint: (id: number) => void;
   onViewStamps: () => void;
   completedCount: number;
+  unlockedCheckpoints: number[];
+  freeExploreMode: boolean;
 }
 
 export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
@@ -18,6 +21,8 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
   onSelectCheckpoint,
   onViewStamps,
   completedCount,
+  unlockedCheckpoints,
+  freeExploreMode,
 }) => {
   return (
     <div className="relative overflow-hidden w-full">
@@ -62,6 +67,20 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
               ? '华山传说路线 · 宝莲灯神话文化研学历程'
               : 'Mount Hua Legend Route · A Cultural Journey through the Myth of the Lotus Lantern'}
           </h2>
+
+          {/* Existing MythTrial visual system, reused from Kai's original project */}
+          <figure className="relative w-full max-w-3xl aspect-[16/8] sm:aspect-[16/7] overflow-hidden rounded-2xl border border-[#EBC393]/35 bg-[#E7E6DF] shadow-2xl mb-4 sm:mb-6">
+            <img
+              src={HERO_ARTWORK}
+              alt={lang === 'zh' ? '灵山纪实体地图与包装视觉' : 'MythTrial physical map and packaging visual'}
+              className="h-full w-full object-cover object-center"
+            />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#071013]/95 to-transparent px-4 pt-12 pb-3 text-left">
+              <p className="text-xs text-[#F3DFC4]">
+                {lang === 'zh' ? ARTWORK_DISCLOSURE.zh : ARTWORK_DISCLOSURE.en}
+              </p>
+            </div>
+          </figure>
 
           {/* Classical Inscription Card (No italics, upright text, high contrast) */}
           <div className="my-4 sm:my-6 p-5 sm:p-7 rounded-2xl border border-[#EBC393]/40 bg-[#121A1F]/90 backdrop-blur-md max-w-2xl w-full relative shadow-xl text-center">
@@ -138,6 +157,7 @@ While a thousand years of pure devotion forge this steadfast heart.”`}
         {/* 1 column on mobile, 2 on md, 3 on lg */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 w-full">
           {CHECKPOINTS.map((cp) => {
+            const isUnlocked = freeExploreMode || unlockedCheckpoints.includes(cp.id);
             const locationTitle = lang === 'zh' ? cp.location : cp.locationEn;
             const stageName = lang === 'zh' ? cp.stage : cp.stageEn;
             const chapterTitle = lang === 'zh' ? cp.chapterTitle : cp.chapterTitleEn;
@@ -149,12 +169,26 @@ While a thousand years of pure devotion forge this steadfast heart.”`}
                 key={cp.id}
                 id={`checkpoint-card-preview-${cp.id}`}
                 onClick={() => {
+                  if (!isUnlocked) return;
                   SoundEngine.playChime(cp.id);
                   onSelectCheckpoint(cp.id);
                 }}
-                className="group cursor-pointer p-5 sm:p-6 rounded-2xl border border-[#304147] bg-[#0E161B] hover:border-[#47BBC1] hover:bg-[#121C22] transition-all duration-300 shadow-lg flex flex-col justify-between min-h-[220px]"
+                className={`group p-5 sm:p-6 rounded-2xl border bg-[#0E161B] transition-all duration-300 shadow-lg flex flex-col justify-between min-h-[220px] ${
+                  isUnlocked
+                    ? 'cursor-pointer border-[#304147] hover:border-[#47BBC1] hover:bg-[#121C22]'
+                    : 'cursor-not-allowed border-[#263238] opacity-55'
+                }`}
               >
                 <div>
+                  <div className="relative h-36 -mx-5 -mt-5 sm:-mx-6 sm:-mt-6 mb-5 overflow-hidden rounded-t-2xl border-b border-[#304147]">
+                    <img
+                      src={CHAPTER_ARTWORK[cp.id]}
+                      alt=""
+                      aria-hidden="true"
+                      className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E161B] via-transparent to-transparent" />
+                  </div>
                   {/* Act badge and Elevation */}
                   <div className="flex items-center justify-between text-xs mb-3">
                     <span className="px-2.5 py-1 rounded-full bg-[#18262C] border border-[#3A4E55] text-[#47BBC1] font-medium">
@@ -186,7 +220,11 @@ While a thousand years of pure devotion forge this steadfast heart.”`}
                     <span className="truncate max-w-[140px] sm:max-w-[180px]">{sealName}</span>
                   </span>
                   <span className="text-[#47BBC1] group-hover:translate-x-1 transition-transform flex items-center gap-0.5 font-medium shrink-0">
-                    {lang === 'zh' ? '进入故事 →' : 'Read Story →'}
+                    {isUnlocked ? (
+                      lang === 'zh' ? '进入故事 →' : 'Read Story →'
+                    ) : (
+                      <><Lock className="w-3.5 h-3.5 mr-1" />{lang === 'zh' ? '尚未解锁' : 'Locked'}</>
+                    )}
                   </span>
                 </div>
               </div>

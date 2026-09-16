@@ -13,6 +13,7 @@ import { StoryCard } from './components/StoryCard';
 import { StampCollection } from './components/StampCollection';
 import { ProgressIndicator } from './components/ProgressIndicator';
 import { SystemMapModal } from './components/SystemMapModal';
+import { ProcessCaseStudy } from './components/ProcessCaseStudy';
 import { SoundEngine } from './utils/soundEffects';
 
 const STORAGE_KEY_COMPLETED = 'mythtrial_completed_cps';
@@ -20,17 +21,25 @@ const STORAGE_KEY_STAMPS = 'mythtrial_collected_stamps';
 const STORAGE_KEY_MODE = 'mythtrial_free_mode';
 const STORAGE_KEY_LANG = 'mythtrial_app_lang';
 
+const getInitialScreen = (): ActiveScreen => {
+  if (typeof window === 'undefined') return 'welcome';
+  return new URLSearchParams(window.location.search).get('view') === 'process'
+    ? 'process'
+    : 'welcome';
+};
+
 export default function App() {
-  const [activeScreen, setActiveScreen] = useState<ActiveScreen>('welcome');
+  const [activeScreen, setActiveScreen] = useState<ActiveScreen>(getInitialScreen);
   const [lang, setLang] = useState<Language>('en');
   const [selectedCheckpointId, setSelectedCheckpointId] = useState<number>(1);
-  const [completedCheckpoints, setCompletedCheckpoints] = useState<number[]>([1]);
+  const [completedCheckpoints, setCompletedCheckpoints] = useState<number[]>([]);
   const [collectedStamps, setCollectedStamps] = useState<string[]>([]);
   const [unlockedCheckpoints, setUnlockedCheckpoints] = useState<number[]>([1]);
   const [freeExploreMode, setFreeExploreMode] = useState<boolean>(false);
   const [audioMuted, setAudioMuted] = useState<boolean>(true);
   const [showResetConfirm, setShowResetConfirm] = useState<boolean>(false);
   const [showSystemMapModal, setShowSystemMapModal] = useState<boolean>(false);
+  const [hasHydrated, setHasHydrated] = useState<boolean>(false);
 
   // Load persistence from local storage
   useEffect(() => {
@@ -68,41 +77,57 @@ export default function App() {
       }
     } catch {
       // LocalStorage fallback
+    } finally {
+      setHasHydrated(true);
     }
   }, []);
 
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    if (activeScreen === 'process') {
+      url.searchParams.set('view', 'process');
+    } else {
+      url.searchParams.delete('view');
+    }
+    window.history.replaceState({}, '', url);
+  }, [activeScreen]);
+
   // Save changes to localStorage
   useEffect(() => {
+    if (!hasHydrated) return;
     try {
       localStorage.setItem(STORAGE_KEY_LANG, lang);
     } catch {
       // safe fallback
     }
-  }, [lang]);
+  }, [hasHydrated, lang]);
 
   useEffect(() => {
+    if (!hasHydrated) return;
     try {
       localStorage.setItem(STORAGE_KEY_COMPLETED, JSON.stringify(completedCheckpoints));
     } catch {
       // safe fallback
     }
-  }, [completedCheckpoints]);
+  }, [completedCheckpoints, hasHydrated]);
 
   useEffect(() => {
+    if (!hasHydrated) return;
     try {
       localStorage.setItem(STORAGE_KEY_STAMPS, JSON.stringify(collectedStamps));
     } catch {
       // safe fallback
     }
-  }, [collectedStamps]);
+  }, [collectedStamps, hasHydrated]);
 
   useEffect(() => {
+    if (!hasHydrated) return;
     try {
       localStorage.setItem(STORAGE_KEY_MODE, String(freeExploreMode));
     } catch {
       // safe fallback
     }
-  }, [freeExploreMode]);
+  }, [freeExploreMode, hasHydrated]);
 
   // Handle collecting stamp for a checkpoint
   const handleCollectStamp = (checkpointId: number) => {
@@ -171,7 +196,7 @@ export default function App() {
       />
 
       {/* Progress Indicator Bar */}
-      {activeScreen !== 'welcome' && (
+      {activeScreen !== 'welcome' && activeScreen !== 'process' && (
         <ProgressIndicator
           lang={lang}
           completedCheckpoints={completedCheckpoints}
@@ -199,6 +224,8 @@ export default function App() {
             }}
             onSelectCheckpoint={handleSelectCheckpoint}
             completedCount={collectedStamps.length}
+            unlockedCheckpoints={unlockedCheckpoints}
+            freeExploreMode={freeExploreMode}
           />
         )}
 
@@ -226,6 +253,8 @@ export default function App() {
             }}
             onSelectCheckpoint={handleSelectCheckpoint}
             onViewStamps={() => setActiveScreen('stamps')}
+            unlockedCheckpoints={unlockedCheckpoints}
+            freeExploreMode={freeExploreMode}
           />
         )}
 
@@ -234,6 +263,16 @@ export default function App() {
             lang={lang}
             collectedStamps={collectedStamps}
             onSelectCheckpoint={handleSelectCheckpoint}
+            onEnterMap={() => {
+              setActiveScreen('map');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
+        )}
+
+        {activeScreen === 'process' && (
+          <ProcessCaseStudy
+            lang={lang}
             onEnterMap={() => {
               setActiveScreen('map');
               window.scrollTo({ top: 0, behavior: 'smooth' });

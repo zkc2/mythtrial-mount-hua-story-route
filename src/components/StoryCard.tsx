@@ -3,6 +3,7 @@ import { CHECKPOINTS } from '../data/checkpointsData';
 import { Checkpoint, Language } from '../types';
 import { SealStamp } from './SealStamp';
 import { ArtworkMural } from './ArtworkMural';
+import { ARTWORK_DISCLOSURE } from '../data/artworkData';
 import { SoundEngine } from '../utils/soundEffects';
 import {
   ChevronLeft,
@@ -14,6 +15,7 @@ import {
   Sparkles,
   CheckCircle2,
   Compass,
+  Lock,
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -25,6 +27,8 @@ interface StoryCardProps {
   onSelectCheckpoint: (id: number) => void;
   onBackToMap: () => void;
   onViewStamps: () => void;
+  unlockedCheckpoints: number[];
+  freeExploreMode: boolean;
 }
 
 export const StoryCard: React.FC<StoryCardProps> = ({
@@ -35,12 +39,15 @@ export const StoryCard: React.FC<StoryCardProps> = ({
   onSelectCheckpoint,
   onBackToMap,
   onViewStamps,
+  unlockedCheckpoints,
+  freeExploreMode,
 }) => {
   const [activeTab, setActiveTab] = useState<'myth' | 'heritage' | 'reflection'>('myth');
   const [isStampingAnimation, setIsStampingAnimation] = useState(false);
 
   const prevId = checkpoint.id > 1 ? checkpoint.id - 1 : null;
   const nextId = checkpoint.id < CHECKPOINTS.length ? checkpoint.id + 1 : null;
+  const nextIsUnlocked = nextId ? freeExploreMode || unlockedCheckpoints.includes(nextId) : false;
 
   const handleStampClick = () => {
     if (!isCollected) {
@@ -111,14 +118,20 @@ export const StoryCard: React.FC<StoryCardProps> = ({
           {nextId ? (
             <button
               id="next-checkpoint-btn"
+              disabled={!nextIsUnlocked}
               onClick={() => {
+                if (!nextIsUnlocked) return;
                 SoundEngine.playChime(nextId);
                 onSelectCheckpoint(nextId);
               }}
-              className="min-h-[44px] px-3 py-2 rounded-lg border border-[#304147] bg-[#121A1F] text-[#CBD5E1] hover:text-[#E6E9D1] hover:border-[#47BBC1] transition-all flex items-center gap-1 text-xs sm:text-sm font-medium"
+              className={`min-h-[44px] px-3 py-2 rounded-lg border transition-all flex items-center gap-1 text-xs sm:text-sm font-medium ${
+                nextIsUnlocked
+                  ? 'border-[#304147] bg-[#121A1F] text-[#CBD5E1] hover:text-[#E6E9D1] hover:border-[#47BBC1]'
+                  : 'border-[#263238] bg-[#0C1114] text-[#5E6A70] cursor-not-allowed'
+              }`}
             >
-              <span>{lang === 'zh' ? '下一幕' : 'Next Act'}</span>
-              <ChevronRight className="w-4 h-4" />
+              <span>{nextIsUnlocked ? (lang === 'zh' ? '下一幕' : 'Next Act') : (lang === 'zh' ? '盖印后解锁' : 'Collect to unlock')}</span>
+              {nextIsUnlocked ? <ChevronRight className="w-4 h-4" /> : <Lock className="w-4 h-4" />}
             </button>
           ) : <div />}
         </div>
@@ -164,11 +177,16 @@ export const StoryCard: React.FC<StoryCardProps> = ({
         {/* Illustrated Narrative Mural Art */}
         <div className="mb-6">
           <ArtworkMural checkpointId={checkpoint.id} />
-          <p className="text-xs sm:text-sm text-[#94A3B8] mt-2 text-center">
-            {lang === 'zh'
-              ? `图${checkpoint.id}：华山神话意境壁画 — ${chapterTitle}`
-              : `Figure ${checkpoint.id}: Mythological Mural Illustration — ${chapterTitle}`}
-          </p>
+          <div className="mt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 text-xs text-[#94A3B8]">
+            <p>
+              {lang === 'zh'
+                ? `图${checkpoint.id}：华山神话意境壁画 — ${chapterTitle}`
+                : `Figure ${checkpoint.id}: Mythological Mural Illustration — ${chapterTitle}`}
+            </p>
+            <p className="text-[#EBC393]/80">
+              {lang === 'zh' ? ARTWORK_DISCLOSURE.zh : ARTWORK_DISCLOSURE.en}
+            </p>
+          </div>
         </div>
 
         {/* Classical Verse Inscription Card (Normal upright text, no italic) */}
@@ -348,7 +366,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
             {lang === 'zh' ? '← 返回华山图卷' : '← Return to Mount Hua Scroll'}
           </button>
 
-          {nextId && (
+          {nextId && nextIsUnlocked && (
             <button
               onClick={() => {
                 SoundEngine.playChime(nextId);
