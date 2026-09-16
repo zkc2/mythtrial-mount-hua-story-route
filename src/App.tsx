@@ -23,15 +23,19 @@ const STORAGE_KEY_LANG = 'mythtrial_app_lang';
 
 const getInitialScreen = (): ActiveScreen => {
   if (typeof window === 'undefined') return 'welcome';
-  return new URLSearchParams(window.location.search).get('view') === 'process'
-    ? 'process'
-    : 'welcome';
+  const view = new URLSearchParams(window.location.search).get('view');
+  if (view === 'process') return 'process';
+  if (view === 'west-peak') return 'story';
+  return 'welcome';
 };
 
 export default function App() {
   const [activeScreen, setActiveScreen] = useState<ActiveScreen>(getInitialScreen);
   const [lang, setLang] = useState<Language>('en');
-  const [selectedCheckpointId, setSelectedCheckpointId] = useState<number>(1);
+  const [selectedCheckpointId, setSelectedCheckpointId] = useState<number>(() => {
+    if (typeof window === 'undefined') return 1;
+    return new URLSearchParams(window.location.search).get('view') === 'west-peak' ? 5 : 1;
+  });
   const [completedCheckpoints, setCompletedCheckpoints] = useState<number[]>([]);
   const [collectedStamps, setCollectedStamps] = useState<string[]>([]);
   const [unlockedCheckpoints, setUnlockedCheckpoints] = useState<number[]>([1]);

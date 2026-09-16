@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 import { CHECKPOINTS } from '../data/checkpointsData';
 import { Checkpoint, Language } from '../types';
 import { SealStamp } from './SealStamp';
@@ -16,8 +16,14 @@ import {
   CheckCircle2,
   Compass,
   Lock,
+  Camera,
+  ScanLine,
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+
+const WestPeakAR = lazy(() =>
+  import('./WestPeakAR').then((module) => ({ default: module.WestPeakAR })),
+);
 
 interface StoryCardProps {
   checkpoint: Checkpoint;
@@ -44,6 +50,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState<'myth' | 'heritage' | 'reflection'>('myth');
   const [isStampingAnimation, setIsStampingAnimation] = useState(false);
+  const [showWestPeakAR, setShowWestPeakAR] = useState(false);
 
   const prevId = checkpoint.id > 1 ? checkpoint.id - 1 : null;
   const nextId = checkpoint.id < CHECKPOINTS.length ? checkpoint.id + 1 : null;
@@ -188,6 +195,36 @@ export const StoryCard: React.FC<StoryCardProps> = ({
             </p>
           </div>
         </div>
+
+        {checkpoint.id === 5 && (
+          <section className="mb-7 rounded-2xl border border-[#EBC393]/45 bg-gradient-to-br from-[#173332] via-[#111D20] to-[#261B17] p-4 sm:p-6 overflow-hidden relative">
+            <div className="absolute -right-10 -top-10 w-44 h-44 rounded-full bg-[#EBC393]/10 blur-3xl" />
+            <div className="relative flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+              <div className="max-w-2xl">
+                <div className="flex items-center gap-2 text-xs uppercase tracking-[.18em] text-[#47BBC1] font-bold">
+                  <ScanLine className="w-4 h-4" />
+                  <span>{lang === 'zh' ? '西峰沉浸式体验 · WebAR' : 'West Peak Immersive Experience · WebAR'}</span>
+                </div>
+                <h2 className="mt-2 text-2xl sm:text-3xl font-serif font-bold text-[#F5E7C5]">
+                  {lang === 'zh' ? '扫描故事标记，亲历劈山一刻' : 'Scan the marker. Witness the mountain split.'}
+                </h2>
+                <p className="mt-2 text-sm sm:text-base text-[#BFCBC7] leading-relaxed">
+                  {lang === 'zh'
+                    ? '通过图像识别唤醒沉香、萱花神斧与斧劈石动画；完成体验后自动获得西峰宝印，并可与神话场景合影。'
+                    : 'Use image recognition to awaken Chenxiang, the divine axe, and Axe-Cleaving Rock. Complete the scene to earn the West Peak seal and take an AR photo.'}
+                </p>
+              </div>
+              <button
+                id="open-west-peak-ar"
+                onClick={() => setShowWestPeakAR(true)}
+                className="min-h-[56px] shrink-0 px-6 py-3.5 rounded-2xl bg-[#EBC393] text-[#10211F] font-bold text-base flex items-center justify-center gap-2 hover:brightness-110 active:scale-[.98] shadow-[0_0_26px_rgba(235,195,147,.2)]"
+              >
+                <Camera className="w-5 h-5" />
+                <span>{lang === 'zh' ? 'Enter AR' : 'Enter AR'}</span>
+              </button>
+            </div>
+          </section>
+        )}
 
         {/* Classical Verse Inscription Card (Normal upright text, no italic) */}
         <div className="my-6 p-4 sm:p-6 rounded-xl border border-[#EBC393]/40 bg-[#121A1F] relative overflow-hidden">
@@ -381,6 +418,24 @@ export const StoryCard: React.FC<StoryCardProps> = ({
           )}
         </div>
       </div>
+      {showWestPeakAR && (
+        <Suspense
+          fallback={
+            <div className="fixed inset-0 z-[100] bg-[#050B0D] flex items-center justify-center text-[#EBC393]">
+              <span className="animate-pulse font-serif text-lg">
+                {lang === 'zh' ? '正在唤醒西峰传说…' : 'Awakening the West Peak legend…'}
+              </span>
+            </div>
+          }
+        >
+          <WestPeakAR
+            lang={lang}
+            isCollected={isCollected}
+            onClose={() => setShowWestPeakAR(false)}
+            onComplete={() => onCollectStamp(checkpoint.id)}
+          />
+        </Suspense>
+      )}
     </div>
   );
 };
