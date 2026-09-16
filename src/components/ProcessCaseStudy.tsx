@@ -62,8 +62,8 @@ const boundaries = [
     icon: FileInput,
     titleEn: 'Where information enters',
     titleZh: '信息从哪里进入',
-    bodyEn: 'Build time: my prompts, route research, story structure, and visual references. Runtime: visitor clicks, language choice, journey mode, and seal actions.',
-    bodyZh: '构建阶段：我的提示、路线研究、故事结构和视觉参考。运行阶段：访客点击、语言选择、探索模式和宝印操作。',
+    bodyEn: 'Build time: my prompts, route research, story structure, and visual references. Runtime: visitor clicks, language choice, camera frames for local QR recognition, photo capture, and seal actions.',
+    bodyZh: '构建阶段：我的提示、路线研究、故事结构和视觉参考。运行阶段：访客点击、语言选择、用于本地二维码识别的摄像头画面、合影操作和宝印操作。',
   },
   {
     icon: Bot,
@@ -76,15 +76,15 @@ const boundaries = [
     icon: EyeOff,
     titleEn: 'What the model did not receive',
     titleZh: '模型没有得到什么',
-    bodyEn: 'No live GPS, camera feed, private visitor profile, official tourism database, or automatic access to my final design judgment.',
-    bodyZh: '没有实时 GPS、摄像头画面、访客隐私资料、官方旅游数据库，也无法自动获得我的最终设计判断。',
+    bodyEn: 'The generative model received no live GPS, camera feed, private visitor profile, or official tourism database. Camera frames stay inside the browser and are read only by deterministic QR recognition code.',
+    bodyZh: '生成式模型没有获得实时 GPS、摄像头画面、访客隐私资料或官方旅游数据库。摄像头画面只留在浏览器中，并仅由确定性的二维码识别程序读取。',
   },
   {
     icon: ShieldCheck,
     titleEn: 'Runtime boundary',
     titleZh: '运行时边界',
-    bodyEn: 'Visitors do not talk to an AI model. The deployed prototype reads fixed content and browser state only. GPS and AR remain future concepts.',
-    bodyZh: '访客不会与 AI 模型对话。已部署原型只读取固定内容和浏览器状态。GPS 与 AR 仍是未来概念。',
+    bodyEn: 'Visitors do not talk to an AI model. The live West Peak WebAR uses local QR recognition, fixed 2D animation, camera compositing, and browser state. GPS anchoring and 3D spatial AR remain future concepts.',
+    bodyZh: '访客不会与 AI 模型对话。已上线的西峰 WebAR 使用本地二维码识别、固定二维动画、摄像头合成与浏览器状态；GPS 定位和三维空间 AR 仍是未来概念。',
   },
 ];
 
@@ -282,10 +282,10 @@ export const ProcessCaseStudy: React.FC<ProcessCaseStudyProps> = ({ lang = 'en',
               {[
                 [zh ? '目的' : 'Purpose', zh ? '把六处华山地标与六幕《宝莲灯》故事连接起来。' : 'Connect six Mount Hua landmarks to six acts of the Lotus Lantern myth.'],
                 [zh ? '适用用户' : 'Intended users', zh ? '家庭访客、学生与文化旅行者。' : 'Families, students, and cultural travelers.'],
-                [zh ? '输入' : 'Inputs', zh ? '点击、语言、探索模式和宝印操作。' : 'Clicks, language, journey mode, and seal actions.'],
-                [zh ? '输出' : 'Outputs', zh ? '双语故事、路线状态、宝印进度和反思问题。' : 'Bilingual stories, route state, seal progress, and reflection prompts.'],
+                [zh ? '输入' : 'Inputs', zh ? '点击、语言、摄像头二维码画面、合影和宝印操作。' : 'Clicks, language, camera QR frames, photo capture, and seal actions.'],
+                [zh ? '输出' : 'Outputs', zh ? '双语故事、二维 AR 动画、合影、路线状态和宝印进度。' : 'Bilingual stories, 2D AR animation, photos, route state, and seal progress.'],
                 [zh ? '数据' : 'Data', zh ? '固定故事内容与浏览器本地进度。' : 'Fixed story content and browser-local progress.'],
-                [zh ? '限制' : 'Limits', zh ? '无实时 GPS、AR、账户同步或运行时 AI。' : 'No live GPS, AR, account sync, or runtime AI.'],
+                [zh ? '限制' : 'Limits', zh ? '无实时 GPS、三维空间锚点、账户同步或运行时生成式 AI。' : 'No live GPS, 3D spatial anchors, account sync, or runtime generative AI.'],
               ].map(([term, description]) => (
                 <div key={term} className="bg-[#0D161A] p-5">
                   <dt className="text-xs uppercase tracking-widest text-[#47BBC1] font-bold">{term}</dt>

@@ -235,8 +235,8 @@ While a thousand years of pure devotion forge this steadfast heart.”`}
         {/* Prototype Heritage Disclaimer */}
         <div className="mt-10 text-center text-xs text-[#94A3B8] max-w-xl mx-auto">
           {lang === 'zh'
-            ? 'MythTrial 原型研学系统 · 沉浸式神话故事与路线探索'
-            : 'MythTrial Prototype · Simulated cultural journey without physical GPS tracking or augmented reality.'}
+            ? 'MythTrial 原型研学系统 · 西峰标记识别 WebAR 已上线，GPS 实地追踪为未来拓展'
+            : 'MythTrial Prototype · West Peak marker-based WebAR is live; GPS-based mountain tracking remains a future extension.'}
         </div>
       </section>
     </div>

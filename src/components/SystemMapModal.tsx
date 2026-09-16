@@ -163,7 +163,7 @@ export const SystemMapModal: React.FC<SystemMapModalProps> = ({
                 <span>{lang === 'zh' ? '系统六大核心组件与连接拓扑' : 'Six System Components & Architectural Topology'}</span>
               </h3>
               <span className="text-xs text-[#94A3B8] hidden sm:inline">
-                {lang === 'zh' ? '包含已上线模块与规划中的未来 AR 层' : 'Live prototype modules & proposed future AR layer'}
+                {lang === 'zh' ? '包含已上线西峰 WebAR 与未来实地拓展层' : 'Live West Peak WebAR & proposed on-site extensions'}
               </span>
             </div>
 
@@ -310,12 +310,12 @@ export const SystemMapModal: React.FC<SystemMapModalProps> = ({
                   </p>
                 </div>
 
-                {/* 6. Future AR Layer Component (PROPOSED FUTURE FEATURE) */}
-                <div className="p-4 rounded-xl border-2 border-dashed border-[#EBC393] bg-[#1C1713] flex flex-col justify-between relative shadow-md">
+                {/* 6. Live West Peak WebAR with future on-site extension */}
+                <div className="p-4 rounded-xl border-2 border-[#EBC393] bg-[#1C1713] flex flex-col justify-between relative shadow-md">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-bold text-[#EBC393] uppercase tracking-wider">06 · FUTURE AR LAYER</span>
+                    <span className="text-xs font-bold text-[#EBC393] uppercase tracking-wider">06 · WEST PEAK WEBAR</span>
                     <span className="px-2 py-0.5 rounded bg-[#EBC393]/20 text-[#EBC393] border border-[#EBC393]/40 text-[10px] font-bold">
-                      {lang === 'zh' ? '概念规划 · 尚未实装' : 'Proposed Future Feature'}
+                      {lang === 'zh' ? '二维 MVP · 已上线' : 'Live 2D MVP'}
                     </span>
                   </div>
                   <div className="flex items-center gap-3 my-2">
@@ -324,17 +324,17 @@ export const SystemMapModal: React.FC<SystemMapModalProps> = ({
                     </div>
                     <div>
                       <h4 className="text-base font-serif font-bold text-[#EBC393]">
-                        {lang === 'zh' ? '现场实景 AR 交互层' : 'Future AR Layer'}
+                        {lang === 'zh' ? '图像识别 AR 交互层' : 'Marker-based AR Layer'}
                       </h4>
                       <p className="text-xs text-[#A69485]">
-                        {lang === 'zh' ? '实体定位 / AR 角色 / 家庭留影' : 'Location AR, characters & photos'}
+                        {lang === 'zh' ? '二维码识别 / 二维角色 / 合影 / 自动盖印' : 'QR recognition, 2D scene, photos & seal'}
                       </p>
                     </div>
                   </div>
                   <p className="text-xs text-[#D5C2B4] mt-2 border-t border-[#382B22] pt-2">
                     {lang === 'zh'
-                      ? '【未来规划功能】在华山实地胜迹通过相机识景召唤神话人物，捕捉家庭合影并触发实地专属印章。'
-                      : 'Proposed feature: Location-based AR characters, family photo checkpoints, and physical geotagged stamping.'}
+                      ? '【已上线】西峰标记识别、劈山动画、合影与自动宝印；GPS 定位和三维空间锚点属于下一阶段。'
+                      : 'Live now: West Peak marker recognition, mountain-splitting animation, photo capture, and automatic seal. GPS and 3D anchors remain future work.'}
                   </p>
                 </div>
               </div>
@@ -347,7 +347,7 @@ export const SystemMapModal: React.FC<SystemMapModalProps> = ({
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full border border-dashed border-[#EBC393] bg-[#EBC393]/30" />
-                  <span>{lang === 'zh' ? '虚线通道：拟建 AR 层将华山物理胜地与数字化故事系统双向桥接' : 'Dashed Line: Proposed AR layer connecting physical landmarks to digital stories'}</span>
+                  <span>{lang === 'zh' ? '铜金通道：已上线西峰 WebAR；虚线能力仍代表 GPS 与三维扩展' : 'Copper channel: live West Peak WebAR; dashed capabilities remain GPS and 3D extensions'}</span>
                 </div>
               </div>
             </div>
@@ -501,14 +501,14 @@ export const SystemMapModal: React.FC<SystemMapModalProps> = ({
                 </div>
               </div>
 
-              {/* PROPOSED FUTURE COMPONENT (Mobile) */}
-              <div className="p-4 rounded-xl border-2 border-dashed border-[#EBC393] bg-[#1A1410] shadow-xl mt-4">
+              {/* LIVE WEST PEAK WEBAR COMPONENT (Mobile) */}
+              <div className="p-4 rounded-xl border-2 border-[#EBC393] bg-[#1A1410] shadow-xl mt-4">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-xs font-bold text-[#EBC393] uppercase tracking-wider">
-                    06 · PROPOSED FUTURE LAYER
+                    06 · WEST PEAK WEBAR
                   </span>
                   <span className="text-[10px] px-2 py-0.5 rounded bg-[#EBC393]/20 text-[#EBC393] border border-[#EBC393]/40 font-bold">
-                    {lang === 'zh' ? '概念规划 · 尚未实装' : 'Proposed Future Feature'}
+                    {lang === 'zh' ? '二维 MVP · 已上线' : 'Live 2D MVP'}
                   </span>
                 </div>
                 <div className="flex items-center gap-3 mb-2">
@@ -517,17 +517,17 @@ export const SystemMapModal: React.FC<SystemMapModalProps> = ({
                   </div>
                   <div>
                     <h4 className="text-base font-serif font-bold text-[#EBC393]">
-                      {lang === 'zh' ? '华山实景 AR 交互层' : 'Future AR Experience Layer'}
+                      {lang === 'zh' ? '西峰图像识别 AR 层' : 'West Peak Marker AR Layer'}
                     </h4>
                     <p className="text-xs text-[#D5C2B4]">
-                      {lang === 'zh' ? '地理识景、沉香与三圣母 AR 投影、家庭实景合影' : 'Location-based AR characters & family photos'}
+                      {lang === 'zh' ? '二维码识别、沉香劈山动画、合影与自动宝印' : 'QR recognition, animated scene, photo & seal'}
                     </p>
                   </div>
                 </div>
                 <p className="text-xs text-[#CBD5E1] leading-relaxed border-t border-[#382B22] pt-2">
                   {lang === 'zh'
-                    ? '【未来实地拓展概念】访客置身西峰沉香劈山处或北峰云台时，AR 引擎可直接将神话人物投影于真实奇峰之上，生成带有实景水印的数字宝印与家庭留影。'
-                    : 'A proposed future extension connecting physical Mount Hua locations (e.g. Chenxiang Axe Split Rock on West Peak) to the digital interface via camera AR character encounters, family commemorative photographs, and location-bound digital stamping.'}
+                    ? '【已上线】访客扫描西峰故事标记后，可观看沉香劈山二维动画、拍摄合影并自动获得数字宝印；无摄像头时会进入课堂演示模式。'
+                    : 'Live now: visitors scan the West Peak story marker, watch the 2D mountain-splitting scene, capture a photo, and automatically receive the digital seal. Classroom mode works without a camera.'}
                 </p>
               </div>
             </div>
@@ -571,12 +571,12 @@ export const SystemMapModal: React.FC<SystemMapModalProps> = ({
               <div className="p-3 rounded-xl bg-[#121D22] border border-[#24343B]">
                 <div className="flex items-center gap-2 mb-1.5">
                   <div className="w-3.5 h-3.5 rounded border border-dashed border-[#EBC393] bg-[#EBC393]/30" />
-                  <strong className="text-[#EBC393]">{lang === 'zh' ? '虚线金框（未来 AR）' : 'Dashed Copper'}</strong>
+                  <strong className="text-[#EBC393]">{lang === 'zh' ? '铜金框（WebAR）' : 'Copper WebAR'}</strong>
                 </div>
                 <p className="text-[#94A3B8] leading-relaxed">
                   {lang === 'zh'
-                    ? '明确标注为【未来规划功能】：实地地理识别、AR 人物召唤与家庭打卡相册。'
-                    : 'Clearly marks proposed future features: On-site AR vision, characters, and family photo captures.'}
+                    ? '代表已上线的西峰图像识别、二维动画、合影和自动盖印，以及其未来 GPS 与三维扩展。'
+                    : 'Live West Peak recognition, 2D animation, photo capture, and seal, plus future GPS and 3D extensions.'}
                 </p>
               </div>
 
@@ -612,12 +612,12 @@ export const SystemMapModal: React.FC<SystemMapModalProps> = ({
             <div className="p-4 rounded-xl border border-[#304147] bg-[#111A1F]">
               <h4 className="font-serif font-bold text-[#47BBC1] mb-2 flex items-center gap-2">
                 <Camera className="w-4 h-4 text-[#EBC393]" />
-                <span>{lang === 'zh' ? '未来 AR 层的实地拓展构想' : 'Future AR Layer Deployment Vision'}</span>
+                <span>{lang === 'zh' ? '已上线 WebAR 与未来实地拓展' : 'Live WebAR & Future On-site Extension'}</span>
               </h4>
               <p className="text-[#CBD5E1] leading-relaxed">
                 {lang === 'zh'
-                  ? '在未来的实地部署中，AR 层将基于地理围栏（Geo-fencing）与计算机视觉识景：当家庭访客真正抵达华山西峰巨石时，手机镜头中将浮现手持宝莲灯的三圣母与沉香母子相见的动态立体投影；访客可与神话人物同框合影，并将生成的实地数字宝印即时盖印入册，获得专属结营认证。'
-                  : 'In future on-site deployments, the proposed AR layer will utilize vision markers and spatial anchors: when a family reaches the actual West Peak summit, looking through their camera reveals 3D mythological avatars of Chenxiang and San Shengmu upon the crags. Visitors can take family commemorative photos with mythological figures, automatically receiving a physical-presence verified digital seal.'}
+                  ? '当前版本已经用浏览器内图像识别完成西峰故事标记、沉香劈山二维动画、合影与自动盖印。未来实地部署可进一步加入地理围栏与三维空间锚点，在真实西峰巨石上稳定放置沉香和三圣母。'
+                  : 'The current browser version already delivers West Peak marker recognition, a 2D mountain-splitting animation, photo capture, and automatic stamping. A future on-site release can add geofencing and 3D spatial anchors for stable placement on the real West Peak crags.'}
               </p>
             </div>
           </div>
