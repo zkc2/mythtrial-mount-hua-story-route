@@ -3,7 +3,6 @@ import { CHECKPOINTS } from '../data/checkpointsData';
 import { Checkpoint, Language } from '../types';
 import { SealStamp } from './SealStamp';
 import { ArtworkMural } from './ArtworkMural';
-import { ARTWORK_DISCLOSURE } from '../data/artworkData';
 import { SoundEngine } from '../utils/soundEffects';
 import {
   ChevronLeft,
@@ -184,14 +183,11 @@ export const StoryCard: React.FC<StoryCardProps> = ({
         {/* Illustrated Narrative Mural Art */}
         <div className="mb-6">
           <ArtworkMural checkpointId={checkpoint.id} />
-          <div className="mt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 text-xs text-[#94A3B8]">
+          <div className="mt-2 text-xs text-[#94A3B8]">
             <p>
               {lang === 'zh'
                 ? `图${checkpoint.id}：华山神话意境壁画 — ${chapterTitle}`
                 : `Figure ${checkpoint.id}: Mythological Mural Illustration — ${chapterTitle}`}
-            </p>
-            <p className="text-[#EBC393]/80">
-              {lang === 'zh' ? ARTWORK_DISCLOSURE.zh : ARTWORK_DISCLOSURE.en}
             </p>
           </div>
         </div>

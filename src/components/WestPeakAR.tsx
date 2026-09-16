@@ -16,7 +16,6 @@ import {
   X,
 } from 'lucide-react';
 import { Language } from '../types';
-import { ARTWORK_DISCLOSURE } from '../data/artworkData';
 import { SoundEngine } from '../utils/soundEffects';
 
 const MARKER_PAYLOAD = 'MYTHTRIAL|WEST_PEAK|AXE_CLEAVING_ROCK|V1';
@@ -68,7 +67,6 @@ const copy = {
     fallback: '使用普通动画继续',
     loading: '正在启动摄像头…',
     captured: '照片已生成',
-    disclosure: ARTWORK_DISCLOSURE.zh,
   },
   en: {
     eyebrow: 'CHECKPOINT 05 · WEST PEAK AR',
@@ -106,7 +104,6 @@ const copy = {
     fallback: 'Continue with standard animation',
     loading: 'Starting camera…',
     captured: 'Your photo is ready',
-    disclosure: ARTWORK_DISCLOSURE.en,
   },
 };
 
@@ -437,7 +434,6 @@ export const WestPeakAR: React.FC<WestPeakARProps> = ({ lang, isCollected, onClo
               <ShieldCheck className="w-4 h-4 mt-0.5 shrink-0 text-[#47BBC1]" />
               <span>{t.privacy}</span>
             </div>
-            <p className="mt-3 text-[10px] text-[#83908D] leading-relaxed">{t.disclosure}</p>
           </section>
         </div>
       )}

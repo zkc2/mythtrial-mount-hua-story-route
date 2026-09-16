@@ -3,7 +3,7 @@ import { CHECKPOINTS } from '../data/checkpointsData';
 import { Language } from '../types';
 import { Compass, Award, ArrowRight, Mountain, Lock } from 'lucide-react';
 import { SoundEngine } from '../utils/soundEffects';
-import { ARTWORK_DISCLOSURE, CHAPTER_ARTWORK, HERO_ARTWORK } from '../data/artworkData';
+import { CHAPTER_ARTWORK, HERO_ARTWORK } from '../data/artworkData';
 
 interface WelcomeScreenProps {
   lang?: Language;
@@ -75,11 +75,6 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
               alt={lang === 'zh' ? '灵山纪实体地图与包装视觉' : 'MythTrial physical map and packaging visual'}
               className="h-full w-full object-cover object-center"
             />
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#071013]/95 to-transparent px-4 pt-12 pb-3 text-left">
-              <p className="text-xs text-[#F3DFC4]">
-                {lang === 'zh' ? ARTWORK_DISCLOSURE.zh : ARTWORK_DISCLOSURE.en}
-              </p>
-            </div>
           </figure>
 
           {/* Classical Inscription Card (No italics, upright text, high contrast) */}

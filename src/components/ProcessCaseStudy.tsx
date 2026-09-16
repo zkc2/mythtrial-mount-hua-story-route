@@ -19,7 +19,7 @@ import {
   UserRound,
 } from 'lucide-react';
 import { Language } from '../types';
-import { ARTWORK_DISCLOSURE, PROTOTYPE_MAP_ARTWORK } from '../data/artworkData';
+import { PROTOTYPE_MAP_ARTWORK } from '../data/artworkData';
 
 interface ProcessCaseStudyProps {
   lang?: Language;
@@ -355,10 +355,7 @@ export const ProcessCaseStudy: React.FC<ProcessCaseStudyProps> = ({ lang = 'en',
 
           <aside className="rounded-3xl border border-[#EBC393]/40 bg-[#171511] p-6 sm:p-8">
             <ImageIcon className="h-6 w-6 text-[#EBC393]" />
-            <h2 className="mt-4 font-serif text-xl font-bold">{zh ? '视觉与制作披露' : 'Visual & production disclosure'}</h2>
-            <p className="mt-3 text-sm leading-relaxed text-[#CFC2B5]">
-              {zh ? ARTWORK_DISCLOSURE.zh : ARTWORK_DISCLOSURE.en}
-            </p>
+            <h2 className="mt-4 font-serif text-xl font-bold">{zh ? '应用制作过程' : 'App production process'}</h2>
             <p className="mt-3 text-sm leading-relaxed text-[#CFC2B5]">
               {zh
                 ? '应用结构与代码由我通过 Google AI Studio 对话生成，再由我测试、筛选、修改和部署。'
