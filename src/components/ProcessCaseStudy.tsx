@@ -362,8 +362,6 @@ export const ProcessCaseStudy: React.FC<ProcessCaseStudyProps> = ({ lang = 'en',
                 : 'The app structure and code were generated through conversations with Google AI Studio, then tested, selected, revised, and deployed by me.'}
             </p>
             <div className="mt-6 space-y-2">
-              <ResourceLink href="https://3105804824.wixsite.com/zhangkai/mythtrial" label={zh ? '原始 MythTrial 项目页面' : 'Original MythTrial project'} />
-              <ResourceLink href="https://www.figma.com/design/75Asa0klX8xX6nGQveC1Xe/%E5%8D%8E%E5%B1%B1-%E5%AE%9D%E8%8E%B2%E7%81%AF?node-id=0-1" label={zh ? 'Figma 视觉源文件' : 'Figma visual source file'} />
               <ResourceLink href="https://github.com/zkc2/mythtrial-mount-hua-story-route" label={zh ? '代码仓库' : 'Source repository'} />
             </div>
           </aside>
