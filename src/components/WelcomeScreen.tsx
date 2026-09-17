@@ -3,7 +3,7 @@ import { CHECKPOINTS } from '../data/checkpointsData';
 import { Language } from '../types';
 import { Compass, Award, ArrowRight, Mountain, Lock } from 'lucide-react';
 import { SoundEngine } from '../utils/soundEffects';
-import { CHAPTER_ARTWORK, HERO_ARTWORK } from '../data/artworkData';
+import { CHAPTER_ARTWORK } from '../data/artworkData';
 
 interface WelcomeScreenProps {
   lang?: Language;
@@ -67,15 +67,6 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
               ? '华山传说路线 · 宝莲灯神话文化研学历程'
               : 'Mount Hua Legend Route · A Cultural Journey through the Myth of the Lotus Lantern'}
           </h2>
-
-          {/* Existing MythTrial visual system, reused from Kai's original project */}
-          <figure className="relative w-full max-w-3xl aspect-[16/8] sm:aspect-[16/7] overflow-hidden rounded-2xl border border-[#EBC393]/35 bg-[#E7E6DF] shadow-2xl mb-4 sm:mb-6">
-            <img
-              src={HERO_ARTWORK}
-              alt={lang === 'zh' ? '灵山纪实体地图与包装视觉' : 'MythTrial physical map and packaging visual'}
-              className="h-full w-full object-cover object-center"
-            />
-          </figure>
 
           {/* Classical Inscription Card (No italics, upright text, high contrast) */}
           <div className="my-4 sm:my-6 p-5 sm:p-7 rounded-2xl border border-[#EBC393]/40 bg-[#121A1F]/90 backdrop-blur-md max-w-2xl w-full relative shadow-xl text-center">
