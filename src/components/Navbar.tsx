@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ActiveScreen, Language } from '../types';
-import { Volume2, VolumeX, BookOpen, Compass, Award, Sparkles, RefreshCw, Menu, X, CheckCircle2, HelpCircle, GitBranch } from 'lucide-react';
+import { Volume2, VolumeX, BookOpen, Compass, Award, Sparkles, RefreshCw, Menu, X, CheckCircle2, HelpCircle } from 'lucide-react';
 import { SoundEngine } from '../utils/soundEffects';
 
 interface NavbarProps {
@@ -53,7 +53,6 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'map', labelZh: '华山图卷', labelEn: 'Mount Hua Scroll', desktopLabelEn: 'Route', icon: <Compass className="w-4 h-4 shrink-0" /> },
     { id: 'story', labelZh: '传说纪事', labelEn: 'Legend Chronicle', desktopLabelEn: 'Legend Chronicle', icon: <BookOpen className="w-4 h-4 shrink-0" /> },
     { id: 'stamps', labelZh: '宝印谱', labelEn: 'Sacred Seal Collection', desktopLabelEn: 'Sacred Seal Collection', icon: <Award className="w-4 h-4 shrink-0" /> },
-    { id: 'process', labelZh: '制作过程', labelEn: 'Case Study', desktopLabelEn: 'Case Study', icon: <GitBranch className="w-4 h-4 shrink-0" /> },
   ];
 
   const handleNavClick = (screen: ActiveScreen) => {
@@ -91,8 +90,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
               <p className="text-[11px] text-[#94A3B8] font-serif leading-none mt-0.5 truncate max-w-[150px] sm:max-w-xs">
                 {lang === 'zh'
-                  ? '华山传说路线 · 宝莲灯神话研学'
-                  : 'Mount Hua Legend Route · The Lotus Lantern'}
+                  ? '华山传说路线 · 宝莲灯文化之旅'
+                  : 'Mount Hua Legend Route · The Lotus Lantern Journey'}
               </p>
             </div>
           </div>

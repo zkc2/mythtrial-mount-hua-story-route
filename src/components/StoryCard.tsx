@@ -3,13 +3,14 @@ import { CHECKPOINTS } from '../data/checkpointsData';
 import { Checkpoint, Language } from '../types';
 import { SealStamp } from './SealStamp';
 import { ArtworkMural } from './ArtworkMural';
+import { JourneyJournal } from './JourneyJournal';
 import { SoundEngine } from '../utils/soundEffects';
 import {
   ChevronLeft,
   ChevronRight,
   BookOpen,
   Mountain,
-  HelpCircle,
+  NotebookPen,
   Award,
   Sparkles,
   CheckCircle2,
@@ -47,7 +48,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
   unlockedCheckpoints,
   freeExploreMode,
 }) => {
-  const [activeTab, setActiveTab] = useState<'myth' | 'heritage' | 'reflection'>('myth');
+  const [activeTab, setActiveTab] = useState<'myth' | 'heritage' | 'journal'>('myth');
   const [isStampingAnimation, setIsStampingAnimation] = useState(false);
   const [showWestPeakAR, setShowWestPeakAR] = useState(false);
 
@@ -81,7 +82,6 @@ export const StoryCard: React.FC<StoryCardProps> = ({
   const verseText = lang === 'zh' ? checkpoint.classicalVerse : checkpoint.classicalVerseEn;
   const storyText = lang === 'zh' ? checkpoint.storyNarrative : checkpoint.storyNarrativeEn;
   const heritageText = lang === 'zh' ? checkpoint.heritageFact : checkpoint.heritageFactEn;
-  const reflectionText = lang === 'zh' ? checkpoint.reflectionQuestion : checkpoint.reflectionQuestionEn;
   const sealName = lang === 'zh' ? checkpoint.stamp.name : checkpoint.stamp.nameEn;
   const sealDesc = lang === 'zh' ? checkpoint.stamp.description : checkpoint.stamp.descriptionEn;
 
@@ -272,19 +272,19 @@ export const StoryCard: React.FC<StoryCardProps> = ({
           </button>
 
           <button
-            id="tab-reflection-prompt"
+            id="tab-journey-journal"
             onClick={() => {
               SoundEngine.playChime(3);
-              setActiveTab('reflection');
+              setActiveTab('journal');
             }}
             className={`min-h-[44px] px-4 py-2.5 text-sm font-medium flex items-center gap-2 border-b-2 transition-all ${
-              activeTab === 'reflection'
+              activeTab === 'journal'
                 ? 'border-[#47BBC1] text-[#47BBC1]'
                 : 'border-transparent text-[#94A3B8] hover:text-[#E6E9D1]'
             }`}
           >
-            <HelpCircle className="w-4 h-4 shrink-0" />
-            <span>{lang === 'zh' ? '研学思考' : 'Classroom Reflection'}</span>
+            <NotebookPen className="w-4 h-4 shrink-0" />
+            <span>{lang === 'zh' ? '旅途记录' : 'Journey Journal'}</span>
           </button>
         </div>
 
@@ -312,18 +312,8 @@ export const StoryCard: React.FC<StoryCardProps> = ({
             </div>
           )}
 
-          {activeTab === 'reflection' && (
-            <div className="space-y-4">
-              <div className="p-4 sm:p-5 rounded-xl bg-[#131D22] border border-[#EBC393]/40">
-                <h3 className="text-base font-bold text-[#EBC393] mb-2 flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-[#47BBC1]" />
-                  <span>{lang === 'zh' ? '研学思辨研讨问题' : 'Discussion & Reflection Prompt'}</span>
-                </h3>
-                <p className="text-base text-[#E6E9D1] leading-relaxed not-italic font-normal">
-                  “{reflectionText}”
-                </p>
-              </div>
-            </div>
+          {activeTab === 'journal' && (
+            <JourneyJournal checkpointId={checkpoint.id} locationTitle={locationTitle} lang={lang} />
           )}
         </div>
 

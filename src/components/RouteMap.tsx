@@ -45,7 +45,7 @@ export const RouteMap: React.FC<RouteMapProps> = ({
             <Compass className="w-4 h-4 text-[#47BBC1]" />
             <span>
               {lang === 'zh'
-                ? '华山传说路线 · 宝莲灯神话研学图卷'
+                ? '华山传说路线 · 宝莲灯文化探索图卷'
                 : 'Mount Hua Legend Route · Illustrated Topographic Map'}
             </span>
           </div>

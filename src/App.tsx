@@ -13,7 +13,6 @@ import { StoryCard } from './components/StoryCard';
 import { StampCollection } from './components/StampCollection';
 import { ProgressIndicator } from './components/ProgressIndicator';
 import { SystemMapModal } from './components/SystemMapModal';
-import { ProcessCaseStudy } from './components/ProcessCaseStudy';
 import { SoundEngine } from './utils/soundEffects';
 
 const STORAGE_KEY_COMPLETED = 'mythtrial_completed_cps';
@@ -24,7 +23,6 @@ const STORAGE_KEY_LANG = 'mythtrial_app_lang';
 const getInitialScreen = (): ActiveScreen => {
   if (typeof window === 'undefined') return 'welcome';
   const view = new URLSearchParams(window.location.search).get('view');
-  if (view === 'process') return 'process';
   if (view === 'west-peak') return 'story';
   return 'welcome';
 };
@@ -85,16 +83,6 @@ export default function App() {
       setHasHydrated(true);
     }
   }, []);
-
-  useEffect(() => {
-    const url = new URL(window.location.href);
-    if (activeScreen === 'process') {
-      url.searchParams.set('view', 'process');
-    } else {
-      url.searchParams.delete('view');
-    }
-    window.history.replaceState({}, '', url);
-  }, [activeScreen]);
 
   // Save changes to localStorage
   useEffect(() => {
@@ -200,7 +188,7 @@ export default function App() {
       />
 
       {/* Progress Indicator Bar */}
-      {activeScreen !== 'welcome' && activeScreen !== 'process' && (
+      {activeScreen !== 'welcome' && (
         <ProgressIndicator
           lang={lang}
           completedCheckpoints={completedCheckpoints}
@@ -274,15 +262,6 @@ export default function App() {
           />
         )}
 
-        {activeScreen === 'process' && (
-          <ProcessCaseStudy
-            lang={lang}
-            onEnterMap={() => {
-              setActiveScreen('map');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          />
-        )}
       </main>
 
       {/* About & System Map Modal */}
@@ -304,7 +283,7 @@ export default function App() {
             </h3>
             <p className="text-sm text-[#CBD5E1] leading-relaxed mb-6">
               {lang === 'zh'
-                ? '此操作将清空所有已访问的关卡与收集的宝印，让您可以从头开启华山神话研学历程。'
+                ? '此操作将清空所有已访问的关卡与收集的宝印，让您可以从头开启华山神话文化旅程。'
                 : 'This action will reset your visited checkpoints and collected sacred seals across Mount Hua’s six sacred sites, allowing you to begin the journey anew.'}
             </p>
             <div className="flex items-center justify-center gap-3">

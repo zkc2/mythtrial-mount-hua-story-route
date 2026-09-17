@@ -44,7 +44,7 @@ export interface Checkpoint {
   stamp: StampData;
 }
 
-export type ActiveScreen = 'welcome' | 'map' | 'story' | 'stamps' | 'process';
+export type ActiveScreen = 'welcome' | 'map' | 'story' | 'stamps';
 
 export interface UserProgress {
   completedCheckpoints: number[];

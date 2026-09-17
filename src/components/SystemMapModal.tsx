@@ -71,7 +71,7 @@ export const SystemMapModal: React.FC<SystemMapModalProps> = ({
               </h2>
               <p className="text-xs text-[#94A3B8]">
                 {lang === 'zh'
-                  ? 'MythTrial 华山神话研学路线的交互流程与系统架构'
+                  ? 'MythTrial 华山神话文化路线的交互流程与系统架构'
                   : 'Interaction flow, data architecture, and conceptual extensions of MythTrial'}
               </p>
             </div>
@@ -118,7 +118,7 @@ export const SystemMapModal: React.FC<SystemMapModalProps> = ({
             </h3>
             <p className="text-sm text-[#CBD5E1]">
               {lang === 'zh'
-                ? 'MythTrial（华山神话研学路线）将西岳华山从游客中心（380米）至西峰巨莲（2,082米）的真实登山路径，与《宝莲灯》沉香劈山救母的六幕叙事无缝映射。通过双语交互地图、文化背景档案和传世宝印收集，为家庭访客与研学团队带来兼具地理考察与传统孝义文化的沉浸式研学体验。'
+                ? 'MythTrial 将西岳华山从游客中心（380米）至西峰巨莲（2,082米）的真实登山路径，与《宝莲灯》沉香劈山救母的六幕叙事相互映射。通过双语交互地图、文化背景、旅途记录和传世宝印收集，为家庭访客与文化登山者带来连接地点、故事与个人记忆的沉浸式体验。'
                 : 'MythTrial seamlessly maps the physical ascent of Mount Hua—from the Visitor Center (380m) to West Peak (2,082m)—onto the six-act epic of The Lotus Lantern (Chenxiang saving his mother). Through bilingual narrative cards, an illustrated trail map, and digital sacred seal imprints, it guides family visitors and cultural learners through both physical geography and enduring filial heritage.'}
             </p>
           </div>
@@ -184,10 +184,10 @@ export const SystemMapModal: React.FC<SystemMapModalProps> = ({
                     </div>
                     <div>
                       <h4 className="text-base font-serif font-bold text-[#E6E9D1]">
-                        {lang === 'zh' ? '访客与研学家庭' : 'Visitor & Family'}
+                        {lang === 'zh' ? '访客与同行家庭' : 'Visitor & Family'}
                       </h4>
                       <p className="text-xs text-[#94A3B8]">
-                        {lang === 'zh' ? '华山游客 / 文化研学家庭成员' : 'Family member or Mount Hua visitor'}
+                        {lang === 'zh' ? '华山游客 / 家庭同行者' : 'Family member or Mount Hua visitor'}
                       </p>
                     </div>
                   </div>
@@ -368,10 +368,10 @@ export const SystemMapModal: React.FC<SystemMapModalProps> = ({
                   </div>
                   <div>
                     <h4 className="text-base font-serif font-bold text-[#E6E9D1]">
-                      {lang === 'zh' ? '访客与研学家庭' : 'Visitor & Family Explorer'}
+                      {lang === 'zh' ? '访客与同行家庭' : 'Visitor & Family Explorer'}
                     </h4>
                     <p className="text-xs text-[#94A3B8]">
-                      {lang === 'zh' ? '家庭访客、学生研学团队、文化登山者' : 'Family member or Mount Hua visitor'}
+                      {lang === 'zh' ? '家庭访客、朋友同行者、文化登山者' : 'Family member or Mount Hua visitor'}
                     </p>
                   </div>
                 </div>
@@ -399,7 +399,7 @@ export const SystemMapModal: React.FC<SystemMapModalProps> = ({
                   </div>
                   <div>
                     <h4 className="text-base font-serif font-bold text-[#E6E9D1]">
-                      {lang === 'zh' ? '双语交互研学界面' : 'Bilingual Story Interface'}
+                      {lang === 'zh' ? '双语互动故事界面' : 'Bilingual Story Interface'}
                     </h4>
                     <p className="text-xs text-[#94A3B8]">
                       {lang === 'zh' ? '序章图卷、垂直登山时间线、海拔层级、故事卡' : 'Route timeline, story cards, elevation profile'}
@@ -526,8 +526,8 @@ export const SystemMapModal: React.FC<SystemMapModalProps> = ({
                 </div>
                 <p className="text-xs text-[#CBD5E1] leading-relaxed border-t border-[#382B22] pt-2">
                   {lang === 'zh'
-                    ? '【已上线】访客扫描西峰故事标记后，可观看沉香劈山二维动画、拍摄合影并自动获得数字宝印；无摄像头时会进入课堂演示模式。'
-                    : 'Live now: visitors scan the West Peak story marker, watch the 2D mountain-splitting scene, capture a photo, and automatically receive the digital seal. Classroom mode works without a camera.'}
+                    ? '【已上线】访客扫描西峰故事标记后，可观看沉香劈山二维动画、拍摄合影并自动获得数字宝印；无摄像头时可进入预览模式。'
+                    : 'Live now: visitors scan the West Peak story marker, watch the 2D mountain-splitting scene, capture a photo, and automatically receive the digital seal. Preview mode works without a camera.'}
                 </p>
               </div>
             </div>

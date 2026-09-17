@@ -36,14 +36,14 @@ const copy = {
     title: '劈山救母',
     intro: '扫描西峰故事标记，让沉香、神斧与斧劈石在眼前苏醒。',
     enter: 'Enter AR · 开启摄像头',
-    demo: 'Classroom Demo Mode',
+    demo: '预览模式',
     marker: '显示 / 打印识别标记',
     privacy: '摄像头画面只在本机浏览器中分析，不会上传或保存。',
     scanning: '寻找西峰故事标记',
     scanningHint: '将完整二维码放入取景框，保持光线充足。',
     cancel: '退出扫描',
-    demoScanning: '课堂演示模式',
-    demoHint: '此模式用预设场景代替摄像头，保证课堂设备也能完整演示。',
+    demoScanning: '预览模式',
+    demoHint: '此模式用预设场景代替摄像头，方便在没有相机权限时体验完整流程。',
     recognize: '识别演示标记',
     markerTitle: '西峰 · 劈山救母识别标记',
     markerHint: '可在另一台设备上显示，或打印后用 Enter AR 扫描。',
@@ -73,14 +73,14 @@ const copy = {
     title: 'Splitting the Mountain',
     intro: 'Scan the West Peak story marker and awaken Chenxiang, the divine axe, and Axe-Cleaving Rock.',
     enter: 'Enter AR · Start Camera',
-    demo: 'Classroom Demo Mode',
+    demo: 'Preview Mode',
     marker: 'Show / Print Recognition Marker',
     privacy: 'Camera frames are analyzed only in your browser. Nothing is uploaded or stored.',
     scanning: 'Find the West Peak story marker',
     scanningHint: 'Fit the full QR marker inside the frame and keep it well lit.',
     cancel: 'Exit scanner',
-    demoScanning: 'Classroom Demo Mode',
-    demoHint: 'A staged background replaces the camera so the full experience works on classroom devices.',
+    demoScanning: 'Preview Mode',
+    demoHint: 'A staged background replaces the camera so the full experience remains available without camera access.',
     recognize: 'Recognize demo marker',
     markerTitle: 'West Peak · Axe-Cleaving Story Marker',
     markerHint: 'Display this on a second device, or print it and scan it with Enter AR.',
@@ -423,7 +423,7 @@ export const WestPeakAR: React.FC<WestPeakARProps> = ({ lang, isCollected, onClo
               <button id="enter-west-peak-ar" onClick={startCamera} className="min-h-14 rounded-2xl bg-[#EBC393] text-[#12211F] font-bold flex items-center justify-center gap-2 hover:brightness-110 active:scale-[.99]">
                 <Camera className="w-5 h-5" /> {t.enter}
               </button>
-              <button id="classroom-demo-mode" onClick={startDemo} className="min-h-13 rounded-2xl border border-[#47BBC1]/60 bg-[#0F2929]/80 text-[#9EE5E0] font-bold flex items-center justify-center gap-2 hover:bg-[#153635]">
+              <button id="preview-mode" onClick={startDemo} className="min-h-13 rounded-2xl border border-[#47BBC1]/60 bg-[#0F2929]/80 text-[#9EE5E0] font-bold flex items-center justify-center gap-2 hover:bg-[#153635]">
                 <Play className="w-5 h-5" /> {t.demo}
               </button>
               <button onClick={() => setMarkerOpen(true)} className="min-h-12 rounded-2xl border border-white/20 bg-white/5 text-[#E4E8DF] flex items-center justify-center gap-2 hover:border-[#EBC393]/60">

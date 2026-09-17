@@ -51,7 +51,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
             <Mountain className="w-3.5 h-3.5 text-[#EBC393]" />
             <span>
               {lang === 'zh'
-                ? '华山传说路线 · 神话文化研学图卷'
+                ? '华山传说路线 · 神话文化探索图卷'
                 : 'Mount Hua Legend Route · Cultural Heritage Exploration'}
             </span>
           </div>
@@ -64,7 +64,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
           {/* Subtitle */}
           <h2 className="text-base sm:text-2xl font-serif text-[#47BBC1] font-medium tracking-wide mb-6 max-w-2xl px-2">
             {lang === 'zh'
-              ? '华山传说路线 · 宝莲灯神话文化研学历程'
+              ? '华山传说路线 · 宝莲灯神话文化之旅'
               : 'Mount Hua Legend Route · A Cultural Journey through the Myth of the Lotus Lantern'}
           </h2>
 
@@ -221,7 +221,7 @@ While a thousand years of pure devotion forge this steadfast heart.”`}
         {/* Prototype Heritage Disclaimer */}
         <div className="mt-10 text-center text-xs text-[#94A3B8] max-w-xl mx-auto">
           {lang === 'zh'
-            ? 'MythTrial 原型研学系统 · 西峰标记识别 WebAR 已上线，GPS 实地追踪为未来拓展'
+            ? 'MythTrial 华山神话体验原型 · 西峰标记识别 WebAR 已上线，GPS 实地追踪为未来拓展'
             : 'MythTrial Prototype · West Peak marker-based WebAR is live; GPS-based mountain tracking remains a future extension.'}
         </div>
       </section>

@@ -20,7 +20,7 @@ export const StampCollection: React.FC<StampCollectionProps> = ({
   onEnterMap,
 }) => {
   const [selectedStamp, setSelectedStamp] = useState<{ stamp: StampData; checkpointId: number } | null>(null);
-  const [studentName, setStudentName] = useState(lang === 'zh' ? '研学探索者' : 'Student Explorer');
+  const [studentName, setStudentName] = useState(lang === 'zh' ? '旅途探索者' : 'Journey Explorer');
   const [showCertificate, setShowCertificate] = useState(false);
 
   const completedCount = collectedStamps.length;
@@ -81,7 +81,7 @@ export const StampCollection: React.FC<StampCollectionProps> = ({
               className="min-h-[44px] px-4 py-2 rounded-xl bg-gradient-to-r from-[#EBC393] to-[#D4A66B] text-black font-bold text-xs sm:text-sm hover:brightness-110 active:scale-95 transition-all shadow-[0_0_12px_rgba(235,195,147,0.4)] flex items-center justify-center gap-2"
             >
               <Sparkles className="w-4 h-4 text-black" />
-              <span>{lang === 'zh' ? '查看研学荣誉证书' : 'View Journey Certificate'}</span>
+              <span>{lang === 'zh' ? '查看旅程纪念证书' : 'View Journey Certificate'}</span>
             </button>
           ) : (
             <button
@@ -265,13 +265,13 @@ export const StampCollection: React.FC<StampCollectionProps> = ({
             {/* Traditional Certificate Border */}
             <div className="border border-dashed border-[#EBC393]/70 p-4 sm:p-6 rounded-xl relative text-center">
               <div className="text-xs text-[#47BBC1] tracking-widest uppercase mb-1 font-medium">
-                ※ {lang === 'zh' ? '华山传说路线 · 结营研学荣誉证书' : 'Mount Hua Legend Route · Completion Certificate'} ※
+                ※ {lang === 'zh' ? '华山传说路线 · 旅程纪念证书' : 'Mount Hua Legend Route · Journey Certificate'} ※
               </div>
               <h2 className="text-xl sm:text-3xl font-serif font-bold text-[#EBC393] tracking-wider mb-2">
-                {lang === 'zh' ? '宝莲灯 · 华山研学荣誉证书' : 'The Lotus Lantern · Mount Hua Journey Honor Certificate'}
+                {lang === 'zh' ? '宝莲灯 · 华山文化旅程纪念证书' : 'The Lotus Lantern · Mount Hua Journey Certificate'}
               </h2>
               <p className="text-xs sm:text-sm text-[#94A3B8] mb-6">
-                {lang === 'zh' ? '神话研学文化探索结业认证' : 'Certificate of Mythological Route Completion'}
+                {lang === 'zh' ? '神话文化路线完成纪念' : 'Certificate of Mythological Route Completion'}
               </p>
 
               {/* Student Name Input */}
@@ -290,7 +290,7 @@ export const StampCollection: React.FC<StampCollectionProps> = ({
               {/* Commendation text */}
               <p className="text-sm sm:text-base text-[#CBD5E1] leading-relaxed max-w-lg mx-auto my-4 text-justify sm:text-center">
                 {lang === 'zh'
-                  ? '兹证明探索者已圆满完成西岳华山《宝莲灯》神话主题文化研学历程。历经游客中心、玉泉院、北峰、中峰、西峰及西峰索道六大圣境，集齐六枚传世宝印，体悟坚毅、仁爱与至孝之精神品格，特颁此证，以资鼓励。'
+                  ? '兹纪念探索者已完成西岳华山《宝莲灯》神话主题文化旅程。历经游客中心、玉泉院、北峰、中峰、西峰及西峰索道六个站点，集齐六枚传世宝印，在山路、传说与同行记忆之间留下属于自己的旅程。'
                   : 'This is to certify that the explorer has completed the cultural journey across the six sacred sites of Mount Hua in the myth of the Lotus Lantern. Ascending through the Visitor Center, Yuquan Temple, North Peak, Central Peak, West Peak, and the West Peak Cableway, all six sacred seals have been successfully collected in honor of filial love, courage, and perseverance.'}
               </p>
 
@@ -309,7 +309,7 @@ export const StampCollection: React.FC<StampCollectionProps> = ({
               {/* Footer Stamp & Date */}
               <div className="flex items-center justify-between pt-4 border-t border-[#304147] text-xs text-[#94A3B8]">
                 <div>{lang === 'zh' ? '评级：特优卓越' : 'Evaluation: Highest Distinction'}</div>
-                <div>{lang === 'zh' ? '研学认证时间：2026年秋' : 'Date of Conferment: Autumn 2026'}</div>
+                <div>{lang === 'zh' ? '旅程纪念时间：2026年秋' : 'Journey Date: Autumn 2026'}</div>
               </div>
             </div>
 
