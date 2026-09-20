@@ -13,6 +13,7 @@ import { StoryCard } from './components/StoryCard';
 import { StampCollection } from './components/StampCollection';
 import { ProgressIndicator } from './components/ProgressIndicator';
 import { SystemMapModal } from './components/SystemMapModal';
+import { ProcessCaseStudy } from './components/ProcessCaseStudy';
 import { SoundEngine } from './utils/soundEffects';
 
 const STORAGE_KEY_COMPLETED = 'mythtrial_completed_cps';
@@ -24,6 +25,7 @@ const getInitialScreen = (): ActiveScreen => {
   if (typeof window === 'undefined') return 'welcome';
   const view = new URLSearchParams(window.location.search).get('view');
   if (view === 'west-peak') return 'story';
+  if (view === 'case-study' || view === 'process') return 'case-study';
   return 'welcome';
 };
 
@@ -121,6 +123,27 @@ export default function App() {
     }
   }, [freeExploreMode, hasHydrated]);
 
+  // Keep the integrated case-study view linkable without maintaining a second page shell.
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    const currentView = url.searchParams.get('view');
+
+    if (activeScreen === 'case-study') {
+      if (currentView !== 'case-study') {
+        url.searchParams.set('view', 'case-study');
+        window.history.replaceState({}, '', url);
+      }
+      document.title = lang === 'zh' ? 'MythTrial 制作案例' : 'MythTrial Case Study';
+      return;
+    }
+
+    if (currentView === 'case-study' || currentView === 'process') {
+      url.searchParams.delete('view');
+      window.history.replaceState({}, '', url);
+    }
+    document.title = 'MythTrial · Mount Hua Legend Route';
+  }, [activeScreen, lang]);
+
   // Handle collecting stamp for a checkpoint
   const handleCollectStamp = (checkpointId: number) => {
     const cp = CHECKPOINTS.find((c) => c.id === checkpointId);
@@ -188,7 +211,7 @@ export default function App() {
       />
 
       {/* Progress Indicator Bar */}
-      {activeScreen !== 'welcome' && (
+      {activeScreen !== 'welcome' && activeScreen !== 'case-study' && (
         <ProgressIndicator
           lang={lang}
           completedCheckpoints={completedCheckpoints}
@@ -255,6 +278,16 @@ export default function App() {
             lang={lang}
             collectedStamps={collectedStamps}
             onSelectCheckpoint={handleSelectCheckpoint}
+            onEnterMap={() => {
+              setActiveScreen('map');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
+        )}
+
+        {activeScreen === 'case-study' && (
+          <ProcessCaseStudy
+            lang={lang}
             onEnterMap={() => {
               setActiveScreen('map');
               window.scrollTo({ top: 0, behavior: 'smooth' });
