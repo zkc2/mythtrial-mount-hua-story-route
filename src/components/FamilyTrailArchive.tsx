@@ -472,16 +472,13 @@ export const FamilyTrailArchive: React.FC<FamilyTrailArchiveProps> = ({ lang }) 
             {zh ? '当前浏览器阻止了 IndexedDB，因此这次新增的记忆只会保留到页面关闭。静态家族档案不受影响；若要长期保存，请允许网站数据存储。' : 'This browser blocked IndexedDB, so newly added memories will last only for this session. The built-in family archive is unaffected. Allow site storage to keep new entries permanently.'}
           </div>
         )}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-7">
+        <div className="mb-7">
           <div>
             <p className="text-xs uppercase tracking-[.2em] text-[#EBC393] font-bold">{zh ? '记忆时间线' : 'Memory Timeline'}</p>
             <h2 className="mt-1.5 text-3xl sm:text-4xl font-serif font-bold text-[#E6E9D1]">
               {zh ? '从旧相册走到今天' : 'From old albums to today'}
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-[#94A3B8] max-w-md sm:text-right">
-            {zh ? '旧照片未保留拍摄日期，因此年代依据画面特征作大致排序，不代表精确年份。' : 'The old photographs contain no capture dates, so their order is an informed visual estimate rather than an exact chronology.'}
-          </p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -565,7 +562,7 @@ export const FamilyTrailArchive: React.FC<FamilyTrailArchiveProps> = ({ lang }) 
                     {categories.filter((item) => item.id !== 'all').map((item) => <option key={item.id} value={item.id}>{zh ? item.zh : item.en}</option>)}
                   </select>
                 </label>
-                <label className="text-sm text-[#CBD5E1]">{zh ? '时间标签（可以是大致年份）' : 'Time label (an approximate year is fine)'}
+                <label className="text-sm text-[#CBD5E1]">{zh ? '时间标签' : 'Time label'}
                   <input value={era} onChange={(event) => setEra(event.target.value)} placeholder={zh ? '例如：2024年春天' : 'For example: Spring 2024'} className="mt-2 w-full min-h-[48px] rounded-xl border border-[#304147] bg-[#0B0E11] px-3 text-[#E6E9D1]" />
                 </label>
               </div>
