@@ -61,7 +61,7 @@ export const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
         </div>
 
         {/* 6 Step Progress Track */}
-        <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto max-w-full py-1 scrollbar-none">
+        <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto max-w-full py-1 pr-3 scrollbar-none snap-x" aria-label={lang === 'zh' ? '可横向滑动的六站路线进度' : 'Swipeable six-stop route progress'}>
           {CHECKPOINTS.map((cp, idx) => {
             const completed = completedCheckpoints.includes(cp.id);
             const unlocked = isUnlocked(cp.id);
@@ -82,7 +82,7 @@ export const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
                   title={`${cp.id}. ${locationTitle} (${cp.altitude}) - ${
                     completed ? (lang === 'zh' ? '已完成' : 'Completed') : unlocked ? (lang === 'zh' ? '可探索' : 'Available') : (lang === 'zh' ? '未解锁' : 'Locked')
                   }`}
-                  className={`min-h-[36px] sm:min-h-[40px] group relative flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg border text-xs transition-all duration-200 whitespace-nowrap shrink-0 ${
+                  className={`min-h-[44px] group relative flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg border text-xs transition-all duration-200 whitespace-nowrap shrink-0 snap-start ${
                     completed
                       ? 'bg-[#122728] border-[#47BBC1] text-[#47BBC1]'
                       : isCurrent

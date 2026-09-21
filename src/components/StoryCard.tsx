@@ -384,7 +384,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
               SoundEngine.playChime(1);
               onBackToMap();
             }}
-            className="text-[#47BBC1] hover:underline flex items-center gap-1 font-medium"
+            className="min-h-[44px] px-2 text-[#47BBC1] hover:underline flex items-center justify-center gap-1 font-medium"
           >
             {lang === 'zh' ? '← 返回华山图卷' : '← Return to Mount Hua Scroll'}
           </button>
@@ -395,7 +395,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
                 SoundEngine.playChime(nextId);
                 onSelectCheckpoint(nextId);
               }}
-              className="text-[#EBC393] hover:underline flex items-center gap-1 font-bold"
+              className="min-h-[44px] px-2 text-[#EBC393] hover:underline flex items-center justify-center gap-1 font-bold"
             >
               {lang === 'zh'
                 ? `前往第${nextId}幕：${CHECKPOINTS[nextId - 1].location} →`

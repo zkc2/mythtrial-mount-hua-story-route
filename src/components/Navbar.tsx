@@ -66,14 +66,14 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <>
       <header className="sticky top-0 z-40 w-full border-b border-[#47BBC1]/20 bg-[#0B0E11]/95 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-3">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-3">
           {/* Logo / Exhibition Title */}
           <div
             onClick={() => handleNavClick('welcome')}
-            className="flex items-center gap-2.5 sm:gap-3 cursor-pointer group select-none shrink-0"
+            className="flex items-center gap-2 sm:gap-3 cursor-pointer group select-none shrink-0 min-w-0"
           >
             {/* Traditional Jade Emblem */}
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 border-[#47BBC1] flex items-center justify-center p-1 bg-[#132B2A] relative shadow-md group-hover:border-[#EBC393] transition-colors">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-[#47BBC1] flex items-center justify-center p-1 bg-[#132B2A] relative shadow-md group-hover:border-[#EBC393] transition-colors shrink-0">
               <div className="w-full h-full rounded-full border border-dashed border-[#EBC393]/80 flex items-center justify-center">
                 <svg className="w-4 h-4 text-[#47BBC1] group-hover:text-[#EBC393]" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 3L14 9H20L15 13L17 19L12 15L7 19L9 13L4 9H10L12 3Z" />
@@ -83,14 +83,14 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-lg sm:text-xl font-serif font-bold text-[#E6E9D1] tracking-wider group-hover:text-[#47BBC1] transition-colors">
+                <span className="text-base sm:text-xl font-serif font-bold text-[#E6E9D1] tracking-wider group-hover:text-[#47BBC1] transition-colors">
                   MythTrial
                 </span>
                 <span className="hidden sm:inline-block px-2 py-0.5 rounded text-[10px] bg-[#12272B] border border-[#47BBC1]/30 text-[#47BBC1] font-mono">
                   v2.0
                 </span>
               </div>
-              <p className="text-[11px] text-[#94A3B8] font-serif leading-none mt-0.5 truncate max-w-[150px] sm:max-w-xs">
+              <p className="hidden min-[430px]:block text-[11px] text-[#94A3B8] font-serif leading-none mt-0.5 truncate max-w-[130px] sm:max-w-xs">
                 {lang === 'zh'
                   ? '华山传说路线 · 宝莲灯文化之旅'
                   : 'Mount Hua Legend Route · The Lotus Lantern Journey'}
@@ -137,7 +137,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </nav>
 
           {/* Right Header Controls Area */}
-          <div className="flex items-center gap-2 sm:gap-2.5">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             {/* "About & System Map" Information Button */}
             <button
               id="about-system-map-btn"
@@ -147,7 +147,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               }}
               title={lang === 'zh' ? '查看系统架构图解与设计说明' : 'View Prototype Architecture & System Map'}
               aria-label="About & System Map"
-              className="min-h-[44px] px-2.5 sm:px-3 py-1.5 rounded-lg border border-[#47BBC1]/40 bg-[#121A1E] text-xs font-medium text-[#47BBC1] hover:border-[#47BBC1] hover:bg-[#16252C] flex items-center gap-1.5 transition-all shadow-sm"
+              className="min-h-[44px] min-w-[44px] px-2.5 sm:px-3 py-1.5 rounded-lg border border-[#47BBC1]/40 bg-[#121A1E] text-xs font-medium text-[#47BBC1] hover:border-[#47BBC1] hover:bg-[#16252C] flex items-center justify-center gap-1.5 transition-all shadow-sm"
             >
               <HelpCircle className="w-4 h-4 text-[#47BBC1] shrink-0" />
               <span className="hidden sm:inline whitespace-nowrap">
@@ -187,7 +187,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={toggleLanguage}
               title={lang === 'zh' ? 'Switch to English' : '切换为中文'}
               aria-label="Toggle language"
-              className="min-h-[44px] px-3 py-1.5 rounded-lg border border-[#47BBC1]/40 bg-[#121A1E] text-xs font-medium text-[#E6E9D1] flex items-center gap-1.5 hover:border-[#47BBC1] hover:bg-[#162228] active:scale-95 transition-all select-none shadow-sm"
+              className="min-h-[44px] px-2 sm:px-3 py-1.5 rounded-lg border border-[#47BBC1]/40 bg-[#121A1E] text-xs font-medium text-[#E6E9D1] flex items-center gap-1 hover:border-[#47BBC1] hover:bg-[#162228] active:scale-95 transition-all select-none shadow-sm"
             >
               <span className={`transition-colors ${lang === 'zh' ? 'text-[#47BBC1] font-bold' : 'text-[#94A3B8]'}`}>
                 中文
