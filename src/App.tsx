@@ -14,6 +14,7 @@ import { StampCollection } from './components/StampCollection';
 import { ProgressIndicator } from './components/ProgressIndicator';
 import { SystemMapModal } from './components/SystemMapModal';
 import { ProcessCaseStudy } from './components/ProcessCaseStudy';
+import { FamilyTrailArchive } from './components/FamilyTrailArchive';
 import { SoundEngine } from './utils/soundEffects';
 
 const STORAGE_KEY_COMPLETED = 'mythtrial_completed_cps';
@@ -25,6 +26,7 @@ const getInitialScreen = (): ActiveScreen => {
   if (typeof window === 'undefined') return 'welcome';
   const view = new URLSearchParams(window.location.search).get('view');
   if (view === 'west-peak') return 'story';
+  if (view === 'archive') return 'archive';
   if (view === 'case-study' || view === 'process') return 'case-study';
   return 'welcome';
 };
@@ -137,7 +139,16 @@ export default function App() {
       return;
     }
 
-    if (currentView === 'case-study' || currentView === 'process') {
+    if (activeScreen === 'archive') {
+      if (currentView !== 'archive') {
+        url.searchParams.set('view', 'archive');
+        window.history.replaceState({}, '', url);
+      }
+      document.title = lang === 'zh' ? 'MythTrial 家族山迹档案' : 'MythTrial Family Trail Archive';
+      return;
+    }
+
+    if (currentView === 'case-study' || currentView === 'process' || currentView === 'archive') {
       url.searchParams.delete('view');
       window.history.replaceState({}, '', url);
     }
@@ -211,7 +222,7 @@ export default function App() {
       />
 
       {/* Progress Indicator Bar */}
-      {activeScreen !== 'welcome' && activeScreen !== 'case-study' && (
+      {activeScreen !== 'welcome' && activeScreen !== 'case-study' && activeScreen !== 'archive' && (
         <ProgressIndicator
           lang={lang}
           completedCheckpoints={completedCheckpoints}
@@ -235,6 +246,10 @@ export default function App() {
             }}
             onViewStamps={() => {
               setActiveScreen('stamps');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onOpenArchive={() => {
+              setActiveScreen('archive');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             onSelectCheckpoint={handleSelectCheckpoint}
@@ -294,6 +309,8 @@ export default function App() {
             }}
           />
         )}
+
+        {activeScreen === 'archive' && <FamilyTrailArchive lang={lang} />}
 
       </main>
 

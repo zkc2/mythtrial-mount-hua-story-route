@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ActiveScreen, Language } from '../types';
-import { Volume2, VolumeX, BookOpen, Compass, Award, Sparkles, RefreshCw, Menu, X, HelpCircle, GitBranch } from 'lucide-react';
+import { Volume2, VolumeX, BookOpen, Compass, Award, Sparkles, RefreshCw, Menu, X, HelpCircle, GitBranch, Archive } from 'lucide-react';
 import { SoundEngine } from '../utils/soundEffects';
 
 interface NavbarProps {
@@ -51,8 +51,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navItems: { id: ActiveScreen; labelZh: string; labelEn: string; desktopLabelEn: string; icon: React.ReactNode }[] = [
     { id: 'welcome', labelZh: '序章前瞻', labelEn: 'Prologue', desktopLabelEn: 'Prologue', icon: <Sparkles className="w-4 h-4 shrink-0" /> },
     { id: 'map', labelZh: '华山图卷', labelEn: 'Mount Hua Scroll', desktopLabelEn: 'Route', icon: <Compass className="w-4 h-4 shrink-0" /> },
-    { id: 'story', labelZh: '传说纪事', labelEn: 'Legend Chronicle', desktopLabelEn: 'Legend Chronicle', icon: <BookOpen className="w-4 h-4 shrink-0" /> },
-    { id: 'stamps', labelZh: '宝印谱', labelEn: 'Sacred Seal Collection', desktopLabelEn: 'Sacred Seal Collection', icon: <Award className="w-4 h-4 shrink-0" /> },
+    { id: 'story', labelZh: '传说纪事', labelEn: 'Legend Chronicle', desktopLabelEn: 'Legend', icon: <BookOpen className="w-4 h-4 shrink-0" /> },
+    { id: 'stamps', labelZh: '宝印谱', labelEn: 'Sacred Seal Collection', desktopLabelEn: 'Seals', icon: <Award className="w-4 h-4 shrink-0" /> },
+    { id: 'archive', labelZh: '家族山迹档案', labelEn: 'Family Trail Archive', desktopLabelEn: 'Archive', icon: <Archive className="w-4 h-4 shrink-0" /> },
     { id: 'case-study', labelZh: '制作案例', labelEn: 'Case Study', desktopLabelEn: 'Case Study', icon: <GitBranch className="w-4 h-4 shrink-0" /> },
   ];
 
@@ -66,7 +67,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <>
       <header className="sticky top-0 z-40 w-full border-b border-[#47BBC1]/20 bg-[#0B0E11]/95 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-3">
+        <div className="max-w-[1540px] mx-auto px-3 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-3">
           {/* Logo / Exhibition Title */}
           <div
             onClick={() => handleNavClick('welcome')}
@@ -151,7 +152,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <HelpCircle className="w-4 h-4 text-[#47BBC1] shrink-0" />
               <span className="hidden sm:inline whitespace-nowrap">
-                {lang === 'zh' ? '系统图解' : 'About & System Map'}
+                {lang === 'zh' ? '系统图解' : 'System Map'}
               </span>
             </button>
 
@@ -167,7 +168,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   ? lang === 'zh' ? '切换为循序探索' : 'Switch to Guided Journey'
                   : lang === 'zh' ? '切换为自由探索' : 'Switch to Free Exploration'
               }
-              className={`hidden lg:flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-lg border transition-colors ${
+              className={`hidden 2xl:flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-lg border transition-colors ${
                 freeExploreMode
                   ? 'border-[#EBC393]/60 bg-[#EBC393]/10 text-[#EBC393]'
                   : 'border-[#47BBC1]/40 bg-[#47BBC1]/5 text-[#47BBC1]'
@@ -202,7 +203,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="audio-toggle-btn"
               onClick={toggleAudio}
-              className={`hidden md:flex min-h-[44px] min-w-[44px] items-center justify-center p-2 rounded-lg border transition-colors ${
+              className={`hidden 2xl:flex min-h-[44px] min-w-[44px] items-center justify-center p-2 rounded-lg border transition-colors ${
                 !audioMuted
                   ? 'border-[#47BBC1] bg-[#47BBC1]/15 text-[#47BBC1]'
                   : 'border-[#333E46] text-[#94A3B8] hover:text-[#E6E9D1]'
@@ -217,7 +218,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="reset-progress-btn"
               onClick={onResetProgress}
-              className="hidden md:flex min-h-[44px] min-w-[44px] items-center justify-center p-2 rounded-lg border border-[#333E46] text-[#94A3B8] hover:text-[#EBC393] hover:border-[#EBC393]/40 transition-colors"
+              className="hidden 2xl:flex min-h-[44px] min-w-[44px] items-center justify-center p-2 rounded-lg border border-[#333E46] text-[#94A3B8] hover:text-[#EBC393] hover:border-[#EBC393]/40 transition-colors"
               title={lang === 'zh' ? '重置探索进度与宝印' : 'Reset journey progress and seals'}
               aria-label="Reset progress"
             >
@@ -230,7 +231,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileMenuOpen}
-              className="xl:hidden min-h-[44px] min-w-[44px] p-2.5 rounded-lg border border-[#304147] text-[#E6E9D1] hover:text-[#47BBC1] hover:border-[#47BBC1] bg-[#121A1E] flex items-center justify-center transition-colors"
+              className="2xl:hidden min-h-[44px] min-w-[44px] p-2.5 rounded-lg border border-[#304147] text-[#E6E9D1] hover:text-[#47BBC1] hover:border-[#47BBC1] bg-[#121A1E] flex items-center justify-center transition-colors"
             >
               {mobileMenuOpen ? <X className="w-5 h-5 text-[#EBC393]" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -240,7 +241,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Slide-out compact navigation drawer for widths below the full desktop layout. */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 xl:hidden flex">
+        <div className="fixed inset-0 z-50 2xl:hidden flex">
           {/* Backdrop overlay */}
           <div
             className="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity"

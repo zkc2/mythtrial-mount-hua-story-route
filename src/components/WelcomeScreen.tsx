@@ -1,7 +1,7 @@
 import React from 'react';
 import { CHECKPOINTS } from '../data/checkpointsData';
 import { Language } from '../types';
-import { Compass, Award, ArrowRight, Mountain, Lock, Smartphone, ExternalLink } from 'lucide-react';
+import { Compass, Award, ArrowRight, Mountain, Lock, Smartphone, ExternalLink, Archive } from 'lucide-react';
 import { SoundEngine } from '../utils/soundEffects';
 import { CHAPTER_ARTWORK } from '../data/artworkData';
 
@@ -10,6 +10,7 @@ interface WelcomeScreenProps {
   onEnterMap: () => void;
   onSelectCheckpoint: (id: number) => void;
   onViewStamps: () => void;
+  onOpenArchive: () => void;
   completedCount: number;
   unlockedCheckpoints: number[];
   freeExploreMode: boolean;
@@ -20,6 +21,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
   onEnterMap,
   onSelectCheckpoint,
   onViewStamps,
+  onOpenArchive,
   completedCount,
   unlockedCheckpoints,
   freeExploreMode,
@@ -117,6 +119,15 @@ While a thousand years of pure devotion forge this steadfast heart.”`}
               <span className="text-xs px-2 py-0.5 rounded-full bg-[#EBC393]/20 font-mono font-bold">
                 {completedCount}/6
               </span>
+            </button>
+
+            <button
+              id="open-family-archive-btn"
+              onClick={onOpenArchive}
+              className="w-full sm:w-auto min-h-[48px] px-6 py-3.5 rounded-xl border border-[#47BBC1]/60 bg-[#132B2A] text-[#47BBC1] font-medium text-base hover:bg-[#47BBC1]/10 active:scale-95 transition-all flex items-center justify-center gap-2"
+            >
+              <Archive className="w-5 h-5" />
+              <span>{lang === 'zh' ? '家族山迹档案' : 'Family Trail Archive'}</span>
             </button>
           </div>
 
