@@ -15,6 +15,7 @@ import { ProgressIndicator } from './components/ProgressIndicator';
 import { SystemMapModal } from './components/SystemMapModal';
 import { ProcessCaseStudy } from './components/ProcessCaseStudy';
 import { FamilyTrailArchive } from './components/FamilyTrailArchive';
+import { MobileQrPage } from './components/MobileQrPage';
 import { SoundEngine } from './utils/soundEffects';
 
 const STORAGE_KEY_COMPLETED = 'mythtrial_completed_cps';
@@ -27,6 +28,7 @@ const getInitialScreen = (): ActiveScreen => {
   const view = new URLSearchParams(window.location.search).get('view');
   if (view === 'west-peak') return 'story';
   if (view === 'archive') return 'archive';
+  if (view === 'qr') return 'qr';
   if (view === 'case-study' || view === 'process') return 'case-study';
   return 'welcome';
 };
@@ -148,7 +150,16 @@ export default function App() {
       return;
     }
 
-    if (currentView === 'case-study' || currentView === 'process' || currentView === 'archive') {
+    if (activeScreen === 'qr') {
+      if (currentView !== 'qr') {
+        url.searchParams.set('view', 'qr');
+        window.history.replaceState({}, '', url);
+      }
+      document.title = lang === 'zh' ? 'MythTrial 扫码体验' : 'MythTrial Mobile QR';
+      return;
+    }
+
+    if (currentView === 'case-study' || currentView === 'process' || currentView === 'archive' || currentView === 'qr') {
       url.searchParams.delete('view');
       window.history.replaceState({}, '', url);
     }
@@ -222,7 +233,7 @@ export default function App() {
       />
 
       {/* Progress Indicator Bar */}
-      {activeScreen !== 'welcome' && activeScreen !== 'case-study' && activeScreen !== 'archive' && (
+      {activeScreen !== 'welcome' && activeScreen !== 'case-study' && activeScreen !== 'archive' && activeScreen !== 'qr' && (
         <ProgressIndicator
           lang={lang}
           completedCheckpoints={completedCheckpoints}
@@ -311,6 +322,8 @@ export default function App() {
         )}
 
         {activeScreen === 'archive' && <FamilyTrailArchive lang={lang} />}
+
+        {activeScreen === 'qr' && <MobileQrPage lang={lang} />}
 
       </main>
 

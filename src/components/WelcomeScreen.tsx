@@ -1,7 +1,7 @@
 import React from 'react';
 import { CHECKPOINTS } from '../data/checkpointsData';
 import { Language } from '../types';
-import { Compass, Award, ArrowRight, Mountain, Lock, Smartphone, ExternalLink, Archive } from 'lucide-react';
+import { Compass, Award, ArrowRight, Mountain, Lock, Archive } from 'lucide-react';
 import { SoundEngine } from '../utils/soundEffects';
 import { CHAPTER_ARTWORK } from '../data/artworkData';
 
@@ -131,34 +131,6 @@ While a thousand years of pure devotion forge this steadfast heart.”`}
             </button>
           </div>
 
-          {/* Public handoff from desktop presentation to the mobile prototype. */}
-          <div className="hidden md:flex mt-7 items-center gap-4 rounded-2xl border border-[#47BBC1]/30 bg-[#0E161B]/90 p-3.5 pr-5 text-left shadow-xl">
-            <img
-              src="/mythtrial-mobile-qr.png"
-              alt="QR code that opens the public MythTrial prototype"
-              className="w-24 h-24 rounded-xl bg-white p-2 shrink-0"
-            />
-            <div className="max-w-xs">
-              <div className="flex items-center gap-2 text-[#47BBC1] font-bold text-sm">
-                <Smartphone className="w-4 h-4" />
-                <span>{lang === 'zh' ? '扫码在手机上体验' : 'Scan to experience on mobile'}</span>
-              </div>
-              <p className="mt-1.5 text-xs leading-relaxed text-[#94A3B8]">
-                {lang === 'zh'
-                  ? '公开链接，无需登录。手机打开后会自动切换为移动端布局。'
-                  : 'Public link, no sign-in required. The layout adapts automatically on mobile.'}
-              </p>
-              <a
-                href="https://mythtrial-mount-hua-story-route.vercel.app/"
-                target="_blank"
-                rel="noreferrer"
-                className="mt-2 inline-flex min-h-[44px] items-center gap-1.5 text-xs font-bold text-[#EBC393] hover:underline"
-              >
-                <span>{lang === 'zh' ? '打开公开链接' : 'Open public link'}</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </div>
         </div>
       </section>
 

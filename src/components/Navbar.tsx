@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ActiveScreen, Language } from '../types';
-import { Volume2, VolumeX, BookOpen, Compass, Award, Sparkles, RefreshCw, Menu, X, HelpCircle, GitBranch, Archive } from 'lucide-react';
+import { Volume2, VolumeX, BookOpen, Compass, Award, Sparkles, RefreshCw, Menu, X, HelpCircle, GitBranch, Archive, QrCode } from 'lucide-react';
 import { SoundEngine } from '../utils/soundEffects';
 
 interface NavbarProps {
@@ -54,6 +54,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'story', labelZh: '传说纪事', labelEn: 'Legend Chronicle', desktopLabelEn: 'Legend', icon: <BookOpen className="w-4 h-4 shrink-0" /> },
     { id: 'stamps', labelZh: '宝印谱', labelEn: 'Sacred Seal Collection', desktopLabelEn: 'Seals', icon: <Award className="w-4 h-4 shrink-0" /> },
     { id: 'archive', labelZh: '家族山迹档案', labelEn: 'Family Trail Archive', desktopLabelEn: 'Archive', icon: <Archive className="w-4 h-4 shrink-0" /> },
+    { id: 'qr', labelZh: '扫码体验', labelEn: 'Mobile QR', desktopLabelEn: 'QR', icon: <QrCode className="w-4 h-4 shrink-0" /> },
     { id: 'case-study', labelZh: '制作案例', labelEn: 'Case Study', desktopLabelEn: 'Case Study', icon: <GitBranch className="w-4 h-4 shrink-0" /> },
   ];
 
